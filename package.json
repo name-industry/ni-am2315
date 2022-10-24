@@ -1,0 +1,32 @@
+{
+  "name": "ni-am2315",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/name-industry/ni-am2315.git",
+  "author": "alexander davis <nameindustry@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "start": "node ./Example/index.js",
+    "docs-create": "node ./Scripts/CleanDocFolder.js && node_modules/.bin/jsdoc index.js --configure .jsDoc.json --verbose",
+    "docs-view": "http-server ./Docs/ -p 0 -o --log-ip",
+    "test": "jest"
+  },
+  "dependencies": {
+    "big.js": "^6.2.1",
+    "i2c-bus": "^5.2.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
+    "babel-jest": "^29.2.1",
+    "http-server": "^14.1.1",
+    "jest": "^29.2.1",
+    "jsdoc": "^3.6.11",
+    "jsdoc-template": "braintree/jsdoc-template",
+    "jsdoc-to-markdown": "^7.1.1",
+    "node-cleanup": "^2.1.2",
+    "rimraf": "^3.0.2"
+  }
+}

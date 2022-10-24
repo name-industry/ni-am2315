@@ -1,0 +1,23 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc", "closure"]
+    },
+    "source": {
+        "include": ["./package.json", "./Docs/README.md", "Src"],
+        "includePattern": ".+\\.(m|c)?js(doc|x)?$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "templates": {
+        "referenceTitle": "Temperature and Humidity sensor AM2315",
+        "disableSort": true,
+        "collapse": false
+    },
+    "opts": {
+        "destination": "./Docs/NI-AM2315/",
+        "encoding": "utf8",
+        "private": true,
+        "recurse": true,
+        "template": "./node_modules/jsdoc-template"
+    }
+}
