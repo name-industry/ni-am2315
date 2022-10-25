@@ -52,6 +52,13 @@ class I2CBus {
             }
         }
 
+        // Some sensors require wake up triggers
+        // and do not appear on an initial scan.
+        // cheap way to do it is scan twice. 
+        // Note: Some situations can cause the bus scan to
+        // hang. 
+        // TODO: Remove this
+        await wire.scan();
         let allAddressesFound = await wire.scan();
 
         if (allAddressesFound.length === 0) {
