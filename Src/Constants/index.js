@@ -5,7 +5,7 @@
 
 
 // 
-const DEFAULT_I2C_ADDRESS = 0x42;
+const DEFAULT_I2C_ADDRESS = 0x5c;
 
 // Rasp 4B I2c bus active on 1
 const DEFAULT_I2C_BUS = 1;

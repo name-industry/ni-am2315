@@ -49,7 +49,7 @@ class NI_AM2315 {
         return {
             success: true,
             msg: "[Sensor] - Ready",
-            data: {}
+            data: initI2cBus.data
         }
 
     }

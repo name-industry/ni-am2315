@@ -14,6 +14,9 @@ const formattedOutput = function (valueObject) {
 
 const initSensor = async function () {
 
+    let started = await NI_AM2315.initialize();
+    console.log("Initialize", started);
+    
 }
 
 const Main = async function _main() {
