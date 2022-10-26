@@ -12,11 +12,23 @@ import { Constants } from "./Constants/index.js";
 
 // 3rd party import
 import I2CBus from "./Bus/I2C/index.js";
+import {
+    setInterval,
+} from 'timers/promises';
 
 class NI_AM2315 {
 
     /** @type {object | undefined} */
     currentConfiguration;
+
+    /** @type {number | undefined} */
+    lastMeasurementTime;
+
+    /** @type {object | undefined} */
+    lastMeasurement;
+
+    /** @type {boolean} */
+    isPolling = false;
 
     /**
      * @method NI_INA219#initialize
@@ -25,7 +37,7 @@ class NI_AM2315 {
      * Start register/calibrate bus & sensor
      * 
      * @description 
-     * Gets a handler to the AM2315 chip via I2c.
+     * Gets a handler to the AM2315 chip via I2c.   
      * 
      * @async 
      * 
@@ -52,6 +64,40 @@ class NI_AM2315 {
             data: initI2cBus.data
         }
 
+    }
+
+    startMeasurementPolling = async function () {
+
+        if (this.isPolling === false) this.isPolling = true;
+
+        let interval = 2000; // ms
+
+        for await (const val of setInterval(
+            interval,
+            this.getMeasurements)) {
+            try {
+                let results = await val();
+                this.updateMeasurement(results);
+            } catch (error) {
+                // handleError
+                break;
+            }
+            if(this.isPolling === false) break;
+        }
+    }
+
+    getMeasurements = async () => {
+        // write 1 -> ensure to wakeup sensor
+        // read 1 -> get group of registers at once
+        return {}
+    }
+
+    updateMeasurement = function (data) {
+        this.lastMeasurement = data;
+    }
+
+    clear = function () {
+        this.isPolling = false;
     }
 
 }

@@ -1,7 +1,9 @@
 // Programs
 import nodeCleanup from "node-cleanup";
 import NI_AM2315 from "../index.js";
-
+import {
+    setTimeout,
+  } from 'timers/promises';
 
 const formattedOutput = function (valueObject) {
     if (valueObject.success === true)
@@ -16,6 +18,12 @@ const initSensor = async function () {
 
     let started = await NI_AM2315.initialize();
     console.log("Initialize", started);
+    console.log("Start Polling");
+    let startPolling = NI_AM2315.startMeasurementPolling();
+    const res = await setTimeout(1000, 'end');
+    console.log("Stop Polling");
+    NI_AM2315.clear();
+    console.log("Cleared");
     
 }
 
@@ -26,7 +34,7 @@ const Main = async function _main() {
 
     nodeCleanup(
         async function (exitCode, signal) {
-            console.log("[NICB:Main] - Node cleanup starting");
+            console.log("[NICB:Main] - Node cleanup starting", exitCode, signal);
         },
         {
             ctrl_C: "[NICB:Main] - Node cleanup end - User Exit",

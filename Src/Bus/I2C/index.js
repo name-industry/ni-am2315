@@ -128,6 +128,29 @@ class I2CBus {
      */
     readRegister = async function (register) {
 
+        /*
+        const wbufAM = Buffer.from([0x03, 0x00, 0x04]);
+const rbufAM = Buffer.alloc(8);
+
+      i2c1.i2cWrite(AM2315_ADDR, wbufAM.length, wbufAM, (e, w, b) => {
+        // console.log('> AM WRITE : ', (e === null)? 'Complete':e,w,b);
+        i2c1.i2cRead(AM2315_ADDR, rbufAM.length, rbufAM, (e, r, b) => {
+          // console.log('> AM READ : ', (e === null)? 'Complete':e,r,b);
+          let h = b.readUInt16BE(2) / 10.0; // humidity
+          let t = b.readUInt16BE(4) / 10.0; // temperature
+          let fTemp = t * 1.8 + 32;
+          // console.log('> AM READ DATA : Humidity -> ', h);
+          // console.log('> AM READ DATA : Temperature C -> ', t);
+          // console.log('> AM READ DATA : Temperature F -> ', fTemp);
+          global.tempC_AM = t;
+          global.tempF_AM = fTemp;
+          global.humidityRH_AM = h;
+        });
+      });
+
+
+        */
+
         let resultBuffer = Buffer.alloc(2, 0, "utf-8");
         let data;
 
